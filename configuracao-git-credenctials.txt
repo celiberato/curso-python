@@ -1,0 +1,6 @@
+nano ~/.git-credentials
+git config --global credential.helper store
+
+git remote remove origin
+
+git remote add origin https://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@github.com/celiberato/curso-python.git
