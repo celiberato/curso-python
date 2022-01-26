@@ -1,0 +1,29 @@
+!pip install pandas==1.1.5
+
+import pandas as pd
+
+df = pd.read_csv('./dados/dow_jones_index.csv')
+
+df.head(n=10)
+df.columns.to_list()
+
+linhas, colunas = df.shape
+print(f'Número de linhas: {linhas}')
+print(f'Número de colunas: {colunas}')
+
+
+#coca-cola
+df_ko = df[df['stock'] == 'KO']
+
+df_ko = df_ko[['date', 'open', 'high', 'low', 'close']]
+
+df_ko.head(n=10)
+df_ko.dtypes
+for col in ['open', 'high', 'low', 'close']:
+  df_ko[col] = df_ko[col].apply(lambda value: float(value.split(sep='$')[-1]))
+df_ko.head(n=10)
+df_ko.dtypes
+
+print(df_ko)
+
+

@@ -1,0 +1,134 @@
+numero_e_par = lambda numero:True if numero %2 == 0 else False
+
+print (numero_e_par(1));
+print (numero_e_par(5));
+print (numero_e_par(10));
+
+numeros = range(0, 10)
+
+for num in numeros :
+  if numero_e_par(num) :
+    print (f'${num} é par')
+
+
+---------------------
+
+def retorno (juros: float) -> float:
+  return lambda investimento: investimento * (1 + juros);
+
+retorno_5_porcento = retorno(0.05);
+retorno_10_porcento = retorno(0.1);
+
+print(retorno_5_porcento(100000));
+print(retorno_10_porcento(100000))
+
+-----------------------
+
+m_lista = list(range(0,10))
+
+num_cubo = map(lambda num: num ** 3, m_lista)
+
+print (list(num_cubo));    
+----------------------
+
+
+listaEmails = ['teste@gmail.com', 'teste@hotmail.com', 'teste@uol.com.br']
+
+extrai_provedor_email = lambda email: email.split('@')[-1]
+
+print(extrai_provedor_email(listaEmails[0]))
+print(extrai_provedor_email(listaEmails[1]))
+print(extrai_provedor_email(listaEmails[2]))
+
+-----------------------
+
+anos = range(0,10)
+taxas_juros = [0.1, 0.13, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.1]
+valores_iniciais = [50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000]
+
+def calculaRetorno(valores_inicial: float, taxa_juros: float, ano: int):
+  valor_final = valores_inicial;
+
+  for ano in range(1, ano + 1) :
+    valor_final = valor_final * (1 + taxa_juros);
+  return round(valor_final, 2)
+
+cenarios = list(map(calculaRetorno, valores_iniciais, taxas_juros, anos));
+print(cenarios)
+
+
+------------------------
+
+numeros_impar_e_par = range(0,10);
+verifica_eh_par = filter(lambda num: num % 2 == 0, numeros_impar_e_par);
+
+print(list(verifica_eh_par))
+
+--------------------------
+
+lista_email = ['teste@google.com', 'teste@hotmail.com', 'teste@uol.com.br'];
+
+provedor_google = filter(lambda email: 'google' in email, lista_email)
+
+print(list(provedor_google))
+
+------------------
+from random import random;
+from functools import reduce;
+
+lista_numeros = [round(100 * random()) for _ in range(0, 100)]
+maior_numero = reduce(lambda x, y: x if x > y else y, lista_numeros)
+
+print (maior_numero)
+
+-------------------
+
+lista_numeros = [1,2,3,4]
+
+numeros_ao_quadrado = map(lambda x: x ** 2, lista_numeros)
+numeros_impares = filter(lambda x: x % 2 != 0, numeros_ao_quadrado)
+
+soma_todos_1 = reduce(lambda x, y: x + y, numeros_impares)
+
+soma_todos_2 = reduce(lambda x, y: x + y, filter(lambda x: x % 2 != 0, map(lambda x: x ** 2, lista_numeros)))
+
+print(soma_todos_1)
+print(soma_todos_2)
+-------------------------
+
+emprestimos = []
+with open(file='./credito.csv', mode='r', encoding='utf8') as fp:
+  fp.readline() # cabeçalho
+  linha = fp.readline();
+
+  while linha:
+    linha_emprestimo = {};
+    linha_elementos = linha.strip().split(sep=',');
+
+    linha_emprestimo['id_vendedor'] = linha_elementos[0];
+    linha_emprestimo['valor_emprestimos'] = float(linha_elementos[1]);
+    linha_emprestimo['quantidade_emprestimos'] = linha_elementos[2];
+    linha_emprestimo['data'] = linha_elementos[3];
+    emprestimos.append(linha_emprestimo);
+    linha = fp.readline();
+
+
+for emprestimo in emprestimos:
+  print(emprestimo);
+
+print('MAP:');
+print (list(map(lambda x: x['valor_emprestimos'], emprestimos)))
+
+print('FILTER:');
+print (list(filter(lambda x: x['valor_emprestimos'] >0, emprestimos)))
+
+print('EXTRAI COLUNA VALOR_EMPRESTIMOS:');
+coluna_valor_emprestimos = list(map(lambda x: float(x['valor_emprestimos']), filter(lambda x: x['valor_emprestimos'] >0, emprestimos)));
+print(str(coluna_valor_emprestimos));
+
+print('REDUCE (SOMA VALOR_EMPRESTIMOS)');
+print(reduce(lambda x, y: x + y, coluna_valor_emprestimos))
+
+print('REDUCE (MEDIA ARITIMÉTICA VALOR_EMPRESTIMOS)');
+print(reduce(lambda x, y: x + y, coluna_valor_emprestimos) / len(coluna_valor_emprestimos))
+

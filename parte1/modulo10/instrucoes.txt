@@ -1,0 +1,12 @@
+https://raw.githubusercontent.com/andre-marcos-perez/ebac-course-utils/develop/dataset/credito.csv
+
+--------------
+
+import pandas as pd
+
+df = pd.read_csv('https://raw.githubusercontent.com/andre-marcos-perez/ebac-course-utils/develop/dataset/credito.csv', na_values='na');
+
+df.head(n=5)
+
+print('csv importado!')
+

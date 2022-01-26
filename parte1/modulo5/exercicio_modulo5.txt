@@ -1,0 +1,37 @@
+
+emprestimos = []
+with open(file='./credito.csv', mode='r', encoding='utf8') as fp:
+  fp.readline() # cabeçalho
+  linha = fp.readline();
+
+  while linha:
+    linha_emprestimo = {};
+    linha_elementos = linha.strip().split(sep=',');
+
+    linha_emprestimo['id_vendedor'] = linha_elementos[0];
+    linha_emprestimo['valor_emprestimos'] = float(linha_elementos[1]);
+    linha_emprestimo['quantidade_emprestimos'] = linha_elementos[2];
+    linha_emprestimo['data'] = linha_elementos[3];
+    emprestimos.append(linha_emprestimo);
+    linha = fp.readline();
+
+
+for emprestimo in emprestimos:
+  print(emprestimo);
+
+print('MAP:');
+print (list(map(lambda x: x['valor_emprestimos'], emprestimos)))
+
+print('FILTER:');
+print (list(filter(lambda x: x['valor_emprestimos'] >0, emprestimos)))
+
+print('EXTRAI COLUNA VALOR_EMPRESTIMOS:');
+coluna_valor_emprestimos = list(map(lambda x: float(x['valor_emprestimos']), filter(lambda x: x['valor_emprestimos'] >0, emprestimos)));
+print(str(coluna_valor_emprestimos));
+
+print('REDUCE (SOMA VALOR_EMPRESTIMOS)');
+print(reduce(lambda x, y: x + y, coluna_valor_emprestimos))
+
+print('REDUCE (MEDIA ARITIMÉTICA VALOR_EMPRESTIMOS)');
+print(reduce(lambda x, y: x + y, coluna_valor_emprestimos) / len(coluna_valor_emprestimos))
+

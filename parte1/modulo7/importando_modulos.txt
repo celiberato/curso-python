@@ -1,0 +1,15 @@
+import requests as req
+import json
+
+response = req.get('https://www2.cetip.com.br/ConsultarTaxaDi/ConsultarTaxaDICetip.aspx');
+
+data = json.loads(response.text)
+print(data)
+
+cdi = None
+for key, value in data.items():
+  if key=='taxa':
+    cdi = value.replace(',', '.')
+    cdi = float(cdi)
+
+print(cdi)    

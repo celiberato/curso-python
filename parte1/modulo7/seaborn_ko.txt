@@ -1,0 +1,15 @@
+!pip install seaborn==0.11.1
+
+import seaborn as sns
+
+plot = sns.lineplot(x="date", y="open", data=df_ko)
+_ = plot.set_xticklabels(labels=df_ko['date'], rotation=90)
+
+plot = sns.lineplot(x="date", y="close", data=df_mcd)
+_ = plot.set_xticklabels(labels=df_ko['date'], rotation=90)
+
+# ATENÇÃO! ESTE LINK ESTÁ QUEBRADO NA DOCUMENTAÇÃO
+#plot = sns.lineplot(x="date", y="value", hue='variable', data=pd.melt(df_mcd, ['da
+#_ = plot.set_xticklabels(labels=df_ko['date'], rotation=90)
+
+plot.figure.savefig("./ko.png")

@@ -1,0 +1,28 @@
+credito = {'123': 750, '456': 812, '789': 980}
+for chave, valor in credito.items():
+  print(f'Para o documento {chave}, o valor do escore de crédito é {valor}.')
+
+def pi() -> float:
+  return 3.14159265359
+pi = pi()
+print(pi)  
+
+emails = ['andre.perez@gmail.com', 'andre.perez@live.com', 'andre.perez@yahoo.com']
+emails_google = filter(lambda email: email in emails, emails)
+
+print(list(emails_google))
+
+class Pessoa(object):
+  def __init__(self, nome: str, idade: int, documento: str):
+    self.nome = nome
+    self.idade = idade
+    self.documento = documento
+  def __str__(self):
+    return f'{self.nome} {self.idade} {self.documento}'
+
+andre = Pessoa(nome="Andre", idade=30, documento="123")
+
+print(andre)
+
+---------------------------------
+

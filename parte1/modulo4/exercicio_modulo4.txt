@@ -1,0 +1,52 @@
+
+----------------------------
+EXERCICIO 1 - LER CSV:
+
+def extrai_coluna_csv(nome_arquivo: str, indice_coluna: int, tipo_dado: str):
+  conteudo = [];
+  with open(file='./'+nome_arquivo, mode='r', encoding='utf8') as arquivo:
+    linha = arquivo.readline()
+    while linha:
+      linha = arquivo.readline()
+
+      arrayLinha = linha.split(',');
+
+      if len(arrayLinha) >= 5 : 
+        dado_coluna = linha.split(',')[indice_coluna];
+        if dado_coluna != '' :
+          if(tipo_dado=='str'):
+            conteudo.append(dado_coluna)
+          elif tipo_dado=='int':
+            conteudo.append(int(dado_coluna))
+          else:
+            return '###'
+
+  return conteudo;
+
+print (extrai_coluna_csv('carros.csv', 0, 'int'));
+print (extrai_coluna_csv('carros.csv', 1, 'str'));
+print (extrai_coluna_csv('carros.csv', 2, 'str'));
+print (extrai_coluna_csv('carros.csv', 3, 'int'));
+print (extrai_coluna_csv('carros.csv', 4, 'int'));
+print (extrai_coluna_csv('carros.csv', 5, 'str'));
+
+---------------------------
+
+EXERCICIO 2 - LER TXT:
+
+def extrai_linha_txt(nome_arquivo: str, numero_linha: int):
+  conteudo = [];
+  indice = 0;
+  with open(file='./'+nome_arquivo, mode='r', encoding='utf8') as arquivo:
+    linha = arquivo.readline()
+    while linha:
+      linha = arquivo.readline()
+
+      if indice == numero_linha : 
+        return linha.replace('\n', '').split(' ');
+      
+      indice += 1;
+
+print (extrai_linha_txt('musica.txt', 1));
+print (extrai_linha_txt('musica.txt', 5));
+print (extrai_linha_txt('musica.txt', 10));

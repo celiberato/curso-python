@@ -1,0 +1,27 @@
+## pip install pandas==1.2.4 seaborn==0.11.1 requests==2.25.1
+
+import csv;
+import seaborn as sns;
+from sys import argv;
+
+# extraindo as colunas e taxa
+
+horas = []
+taxas = []
+
+with open(file='./taxa-cdi.csv', mode='r', encoding='utf8') as fp:
+	linha = fp.readline();
+	linha = fp.readline();
+	while linha:
+		linha_separada = linha.split(sep=',');
+		hora = linha_separada[1];
+		horas.append(hora)
+
+		taxa = float(linha_separada[2])
+		taxas.append(taxa)
+		linha = fp.readline();
+
+# salvando no grafico
+
+grafico = sns.swarmplot(x=horas, y=taxas)
+grafico.get_figure().savefig(f'{argv[1]}.png')
