@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve firstproject
+After=network.target
+
+[Service]
+User=adminuser
+Group=adminuser
+WorkingDirectory=/home/adminuser/Documents/python/curso-python/firstproject
+Environment="PATH=/home/adminuser/Documents/python/curso-python/firstproject/firstprojectenv/bin"
+ExecStart=/home/adminuser/Documents/python/curso-python/firstproject/firstprojectenv/bin/gunicorn --workers 3 --bind unix:firstproject.sock -m 007 wsgi
+
+[Install]
+WantedBy=multi-user.target

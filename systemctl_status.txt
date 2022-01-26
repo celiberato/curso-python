@@ -1,0 +1,10 @@
+? firstproject.service - Gunicorn instance to serve firstproject
+   Loaded: loaded (/etc/systemd/system/firstproject.service; enabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since Wed 2022-01-26 19:22:01 UTC; 5s ago
+  Process: 3089 ExecStart=/home/adminuser/Documents/python/curso-python/firstproject/firstprojectenv/bin/gunicorn --workers 3 --bind unix:firstproject.sock -m 007 wsgi (code=exited, status>
+ Main PID: 3089 (code=exited, status=203/EXEC)
+
+jan 26 19:22:01 localhost.localdomain systemd[1]: Started Gunicorn instance to serve firstproject.
+jan 26 19:22:01 localhost.localdomain systemd[1]: firstproject.service: Main process exited, code=exited, status=203/EXEC
+jan 26 19:22:01 localhost.localdomain systemd[1]: firstproject.service: Failed with result 'exit-code'.
+lines 1-9/9 (END)
