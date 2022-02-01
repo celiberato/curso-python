@@ -1,3 +1,9 @@
+apt-get update
+
+apt-get install python3
+apt-get install pip3
+
+sudo yum install python-pip python-devel gcc nginx
 
 sudo pip3 install virtualenv
 
@@ -8,5 +14,7 @@ virtualenv firstprojectenv
 source firstprojectenv/bin/activate
 
 pip3 install gunicorn flask
+
+sudo cp firstproject.service /etc/systemd/system/firstproject.service
 
 gunicorn --bind 0.0.0.0:8000 wsgi
